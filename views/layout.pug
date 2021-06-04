@@ -4,7 +4,20 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="css/bootstrap.css")
+        link(rel="stylesheet", href="css/app.css")
+        link(rel="stylesheet", href="css/normalize.css")
     body
-        block content
-        block afterContent
+        header.barra
+            h1 UpTask
+            a(href="#") End Session
+        main.contenedor
+            aside.contenedor-proyectos
+                .panel.crear-proyecto
+                    a(href="#" class="boton") New
+                        span +
+                .panel.lista-proyectos
+                    h2 Projects
+                    ul#proyectos.proyectos
+                        li
+                            a(href="#") Virtual Store Design
+            block content

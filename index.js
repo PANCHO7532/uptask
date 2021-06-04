@@ -3,6 +3,9 @@ const path = require("path");
 const routes = require("./routes");
 const app = express();
 
+//set static stuff
+app.use(express.static("public"));
+
 //enable pug
 app.set("view engine", "pug");
 
