@@ -20,14 +20,15 @@ exports.newProjectPOST = (req, res) => {
         })
     }
     if(err.length > 0) {
-        console.log("error");
+        //console.log("error");
+        //console.log(err);
         res.render("newProject", {
             title: "New Project",
             err
         })
     } else {
         //no errors
-        console.log("no error");
+        //console.log("no error");
         //insert in db :v
     }
 }
