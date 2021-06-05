@@ -8,4 +8,4 @@ package-lock.json
 test.js
 
 # new
-#cfg/db.js
+cfg/db.js
