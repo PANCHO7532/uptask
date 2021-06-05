@@ -6,3 +6,6 @@ nodeBugReport/
 research/
 package-lock.json
 test.js
+
+# new
+#cfg/db.js
