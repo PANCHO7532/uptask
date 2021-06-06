@@ -9,8 +9,6 @@ exports.newProject = (req, res) => {
     })
 }
 exports.newProjectPOST = (req, res) => {
-    //res.send("sent");
-    //console.log(req.body);
     const { name } = req.body;
     let err = [];
     console.log(name);
@@ -20,15 +18,11 @@ exports.newProjectPOST = (req, res) => {
         })
     }
     if(err.length > 0) {
-        //console.log("error");
-        //console.log(err);
         res.render("newProject", {
             title: "New Project",
             err
         })
     } else {
-        //no errors
-        //console.log("no error");
-        //insert in db :v
+        //para database
     }
 }

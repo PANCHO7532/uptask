@@ -4,6 +4,10 @@ const bodyParser = require("body-parser");
 const routes = require("./routes");
 const app = express();
 
+//db
+const db = require("./config/db.js");
+db.authenticate().then(() => console.log("conectado :v"))
+                .catch((e) => console.log(e));
 //set static stuff
 app.use(express.static("public"));
 
