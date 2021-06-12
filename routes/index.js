@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
+//express validator
+const { body } = require("express-validator/check");
 const controllers = require("../controllers/projectController");
 module.exports = function() {
     router.get("/", controllers.r1);
     router.get("/newProject", controllers.newProject);
-    router.post("/newProject", controllers.newProjectPOST);
+    router.post("/newProject", body("nombre").not().isEmpty().trim().escape(), controllers.newProjectPOST);
     return router;
 }

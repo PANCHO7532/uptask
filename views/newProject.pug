@@ -4,7 +4,7 @@ block content
         h1 #{title}
         if err
             each error in err
-                .alerta = errror.text
+                .alerta= error.text
         form.agregar-proyecto(action="/newProject" method="POST")
             .campo
                 label(for="name") Project Name: 

@@ -1,3 +1,5 @@
+const Projects = require("../models/Projects");
+const projects = require("../models/Projects");
 exports.r1 = (req, res) => {
     res.render("index", {
         title: "Index"
@@ -8,7 +10,7 @@ exports.newProject = (req, res) => {
         title: "New Project"
     })
 }
-exports.newProjectPOST = (req, res) => {
+exports.newProjectPOST = async(req, res) => {
     const { name } = req.body;
     let err = [];
     console.log(name);
@@ -24,5 +26,7 @@ exports.newProjectPOST = (req, res) => {
         })
     } else {
         //para database
+        const project = await Projects.create({ name });
+        res.redirect("/");
     }
 }

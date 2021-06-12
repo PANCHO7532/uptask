@@ -6,7 +6,8 @@ const app = express();
 
 //db
 const db = require("./config/db.js");
-db.authenticate().then(() => console.log("conectado :v"))
+require("./models/Projects");
+db.sync().then(() => console.log("conectado :v"))
                 .catch((e) => console.log(e));
 //set static stuff
 app.use(express.static("public"));
