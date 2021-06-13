@@ -19,6 +19,8 @@ html(lang="en")
                 .panel.lista-proyectos
                     h2 Projects
                     ul#proyectos.proyectos
-                        li
-                            a(href="#") Virtual Store Design
+                        if(projects.length)
+                            each project in projects
+                                li
+                                    a(href="#")= project.name
             block content

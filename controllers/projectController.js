@@ -1,13 +1,17 @@
 const Projects = require("../models/Projects");
-const projects = require("../models/Projects");
-exports.r1 = (req, res) => {
+//const projects = require("../models/Projects"); //remind me to check if this is useful
+exports.r1 = async (req, res) => {
+    const projects = await Projects.findAll()
     res.render("index", {
-        title: "Index"
+        title: "Index",
+        projects
     });
 };
-exports.newProject = (req, res) => {
+exports.newProject = async (req, res) => {
+    const projects = await Projects.findAll()
     res.render("newProject", {
-        title: "New Project"
+        title: "New Project",
+        projects
     })
 }
 exports.newProjectPOST = async(req, res) => {
