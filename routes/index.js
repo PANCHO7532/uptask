@@ -6,6 +6,6 @@ const controllers = require("../controllers/projectController");
 module.exports = function() {
     router.get("/", controllers.r1);
     router.get("/newProject", controllers.newProject);
-    router.post("/newProject", body("nombre").not().isEmpty().trim().escape(), controllers.newProjectPOST);
+    router.post("/newProject", body("name").not().isEmpty().trim().escape(), controllers.newProjectPOST);
     return router;
 }

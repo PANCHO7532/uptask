@@ -26,6 +26,7 @@ exports.newProjectPOST = async(req, res) => {
         })
     } else {
         //para database
+        //const url = require("slug")(name).toLowerCase();
         const project = await Projects.create({ name });
         res.redirect("/");
     }
