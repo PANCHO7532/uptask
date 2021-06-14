@@ -35,3 +35,21 @@ exports.newProjectPOST = async(req, res) => {
         res.redirect("/");
     }
 }
+exports.projectByURL = async(req, res, next) => {
+    const projects = await Projects.findAll();
+    const project = await Projects.findOne({
+        where: {
+            url: req.params.url
+        }
+    });
+    console.log(project);
+    if(!project) {
+        next();
+    }
+    //res.send("Done! :D");
+    res.render("tasks", {
+        title: "Project Tasks",
+        project,
+        projects
+    })
+}

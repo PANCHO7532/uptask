@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const routes = require("./routes");
+const helpers = require("./helpers");
 const app = express();
 
 //db
@@ -17,6 +18,12 @@ app.set("view engine", "pug");
 
 //set template dir
 app.set("views", path.join(__dirname, "./views"));
+
+//vardump xd
+app.use((req, res, next) => {
+    res.locals.vardump = helpers.vardump;
+    next();
+});
 
 //enable bodyparser
 app.use(bodyParser.urlencoded({extended: true})) //deprecated lol
