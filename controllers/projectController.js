@@ -53,3 +53,10 @@ exports.projectByURL = async(req, res, next) => {
         projects
     })
 }
+exports.editForm = async(req, res) => {
+    const projects = await Projects.findAll();
+    res.render("newProject", {
+        title: "Edit Project",
+        projects
+    })
+}

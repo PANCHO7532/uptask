@@ -8,5 +8,7 @@ module.exports = function() {
     router.get("/newProject", controllers.newProject);
     router.post("/newProject", body("name").not().isEmpty().trim().escape(), controllers.newProjectPOST);
     router.get("/projects/:url", controllers.projectByURL);
+    //update project
+    router.get("/project/edit/:id", controllers.editForm);
     return router;
 }
