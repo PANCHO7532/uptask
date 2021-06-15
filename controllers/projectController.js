@@ -42,6 +42,7 @@ exports.projectByURL = async(req, res, next) => {
             url: req.params.url
         }
     });
+    console.log("projects object:");
     console.log(project);
     if(!project) {
         next();
