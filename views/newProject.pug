@@ -8,5 +8,4 @@ block content
         if err
             each error in err
                 .alerta= error.text
-        pre=vardump(projects)
         +createProject(project)

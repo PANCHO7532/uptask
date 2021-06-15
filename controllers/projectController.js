@@ -42,10 +42,12 @@ exports.projectByURL = async(req, res, next) => {
             url: req.params.url
         }
     });
+    /*
     console.log("project object:");
     console.log(project);
     console.log("projects object:");
     console.log(projects)
+    */
     if(!project) {
         next();
     }
@@ -57,9 +59,43 @@ exports.projectByURL = async(req, res, next) => {
     })
 }
 exports.editForm = async(req, res) => {
-    const projects = await Projects.findAll();
+    const projectsPromise = Projects.findAll();
+    const projectPromise = Projects.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+    const [projects, project] = await Promise.all([projectsPromise, projectPromise]);
     res.render("newProject", {
         title: "Edit Project",
-        projects
+        projects,
+        project
     })
+}
+exports.updateProjectPOST = async(req, res) => {
+    const { name } = req.body;
+    let err = [];
+    console.log(name);
+    if(!name || name.length < 1) {
+        err.push({
+            'text': "Add a name to your project!"
+        })
+    }
+    if(err.length > 0) {
+        res.render("newProject", {
+            title: "New Project",
+            err
+        })
+    } else {
+        //para database
+        //const url = require("slug")(name).toLowerCase();
+        await Projects.update({
+            name: name
+        }, {
+            where: {
+                id: req.params.id
+            }
+        });
+        res.redirect("/");
+    }
 }

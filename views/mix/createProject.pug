@@ -1,6 +1,6 @@
 mixin createProject(project = {})
-    pre=vardump(project)
-    form.agregar-proyecto(action="/newProject" method="POST")
+    pre= vardump(project)
+    form.agregar-proyecto(action=`${project.id ? '/newProject/' + project.id : '/newProject'}` method="POST")
         .campo
             label(for="name") Project Name: 
             input(value=project.name type="text" id="name" name="name" placeholder="Project Name")
