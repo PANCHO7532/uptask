@@ -1,0 +1,1 @@
+Note for later: check if i should append bundle.js to future commits for save space
