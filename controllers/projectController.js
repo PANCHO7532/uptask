@@ -99,3 +99,16 @@ exports.updateProjectPOST = async(req, res) => {
         res.redirect("/");
     }
 }
+exports.deleteProject = async(req, res, next) => {
+    //console.log(req);
+    const {reqUrl} = req.query;
+    const result = await Projects.destroy({
+        where: {
+            url: reqUrl
+        }
+    });
+    if(!result) {
+        next();
+    }
+    res.send("1");
+}

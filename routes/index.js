@@ -11,5 +11,7 @@ module.exports = function() {
     //update project
     router.get("/project/edit/:id", controllers.editForm);
     router.post("/newProject/:id", body("name").not().isEmpty().trim().escape(), controllers.updateProjectPOST);
+    //delete project
+    router.delete("/projects/:url", controllers.deleteProject);
     return router;
 }
