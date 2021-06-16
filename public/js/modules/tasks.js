@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import {updateProgress} from "../functions/progress"
 //backtick: `
 const tasks = document.querySelector(".listado-pendientes");
 if(tasks) {
@@ -13,7 +14,10 @@ if(tasks) {
             axios.patch(reqUrl, {
                 idTask
             }).then((response) => {
-                icon.classList.toggle("completo");
+                if(response.status == 201) {
+                    icon.classList.toggle("completo");
+                    updateProgress();
+                }
             }).catch((reject) => {
                 //fill with sweet alert
             })
@@ -21,8 +25,8 @@ if(tasks) {
         if(event.target.classList.contains("fa-trash")) {
             const taskHTML = event.target.parentElement.parentElement;
             const idTask = taskHTML.dataset.taskid;
-            console.log(taskHTML);
-            console.log(idTask);
+            //console.log(taskHTML);
+            //console.log(idTask);
             Swal.fire({
                 title: 'Are you sure you want to delete this task?',
                 text: "You won't be able to recover it!",
@@ -33,7 +37,7 @@ if(tasks) {
                 confirmButtonText: 'Delete'
             }).then((result) => {
                 if(result.isConfirmed) {
-                    console.log("[INFO] Triggered a deletion");
+                    //console.log("[INFO] Triggered a deletion");
                     const reqUrl = `${location.origin}/tasks/${idTask}`
                     axios.delete(reqUrl, {
                         idTask

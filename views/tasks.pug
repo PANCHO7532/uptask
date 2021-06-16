@@ -24,6 +24,12 @@ block content
                 if tasks.length < 1
                     p= "No tasks in this project."
         //pre= vardump(project)
+        //progress
+        .avance
+            h2 Project Progress
+            #barra-avance.barra-avance
+                #porcentaje.porcentaje
+                
         //actions
         .contenedor-acciones
             a(href=`/project/edit/${project.id}` class="boton") Edit Project
