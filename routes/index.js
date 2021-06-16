@@ -4,6 +4,7 @@ const router = express.Router();
 const { body } = require("express-validator/check");
 const controllers = require("../controllers/projectController");
 const taskController = require("../controllers/taskController");
+const userController = require("../controllers/userController");
 module.exports = function() {
     router.get("/", controllers.r1);
     router.get("/newProject", controllers.newProject);
@@ -20,5 +21,7 @@ module.exports = function() {
     router.patch("/tasks/:id", taskController.changeTaskStatus);
     //delete task
     router.delete("/tasks/:id", taskController.deleteTask);
+    //create new account
+    router.get("/createAccount", userController.formCreateAccount);
     return router;
 }

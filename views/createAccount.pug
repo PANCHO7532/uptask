@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    head
+        include partials/header
+    body.login
+        .contenedor-formulario
+            h1 Create your account on UpTask
+            form#formulario.caja.caja-login(method="POST" action="/createAccount")
+                .campo
+                    label(for="email") E-mail:
+                    input(type="email" name="email" placeholder="Email")
+                .campo
+                    label(for="passwd") Password:
+                    input(type="password" name="passwd" placeholder="Password")
+                .campo
+                    input.boton(type="submit" value="Create Account")
+                .campo
+                    a(href="/login") Back to login section
+        script(src="/dist/bundle.js")
+                
