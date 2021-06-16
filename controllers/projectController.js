@@ -1,4 +1,5 @@
 const Projects = require("../models/Projects");
+const Tasks = require("../models/Tasks");
 //const projects = require("../models/Projects"); //remind me to check if this is useful
 exports.r1 = async (req, res) => {
     const projects = await Projects.findAll()
@@ -48,6 +49,12 @@ exports.projectByURL = async(req, res, next) => {
     console.log("projects object:");
     console.log(projects)
     */
+    //checking tasks
+    const tasks = await Tasks.findAll({
+        where: {
+            projectId: project.id
+        }
+    });
     if(!project) {
         next();
     }
@@ -55,7 +62,8 @@ exports.projectByURL = async(req, res, next) => {
     res.render("tasks", {
         title: "Project Tasks",
         project,
-        projects
+        projects,
+        tasks
     })
 }
 exports.editForm = async(req, res) => {

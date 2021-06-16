@@ -3,6 +3,7 @@ const router = express.Router();
 //express validator
 const { body } = require("express-validator/check");
 const controllers = require("../controllers/projectController");
+const taskController = require("../controllers/taskController");
 module.exports = function() {
     router.get("/", controllers.r1);
     router.get("/newProject", controllers.newProject);
@@ -13,5 +14,7 @@ module.exports = function() {
     router.post("/newProject/:id", body("name").not().isEmpty().trim().escape(), controllers.updateProjectPOST);
     //delete project
     router.delete("/projects/:url", controllers.deleteProject);
+    //add task?
+    router.post("/projects/:url", taskController.addTask);
     return router;
 }

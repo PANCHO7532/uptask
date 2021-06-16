@@ -3,9 +3,27 @@ block content
     .contenido-principal
         h1 #{title} - #{project.name}
         //form
-
+        form.agregar-tarea(action=`/projects/${project.url}` method="POST")
+            .campo
+                label(for="task") Task:
+                input.nombre-tarea(type="text" name="task" placeholder="Task Name")
+            .campo.enviar
+                input.boton.nueva-tarea(type="submit" value="Add")
         //pending
-        pre= vardump(project)
+        .listado-pendientes
+            ul
+                each task in tasks
+                    li.tarea
+                        p= task.task
+                        .acciones
+                            if task.status
+                                i.far.fa-check-circle.completo
+                            else
+                                i.far.fa-check-circle
+                            i.fas.fa-trash
+                if tasks.length < 1
+                    p= "No tasks in this project."
+        //pre= vardump(project)
         //actions
         .contenedor-acciones
             a(href=`/project/edit/${project.id}` class="boton") Edit Project
