@@ -1,0 +1,44 @@
+const Sequelize = require("sequelize");
+const db = require("../config/db");
+const Projects = require("./Projects");
+const BCrypt = require("bcrypt");
+const Users = db.define("users", {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    email: {
+        type: Sequelize.STRING(60),
+        allowNull: false,
+        validate: {
+            isEmail: {
+                msg: "Please add a valid mail!"
+            },
+            notEmpty: {
+                msg: "Email can't be empty"
+            }
+        },
+        unique: {
+            args: true,
+            msg: "User already registered!"
+        }
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Password cannot be empty"
+            }
+        }
+    }
+},{
+    hooks: {
+        beforeCreate(user) {
+            user.password = BCrypt.hashSync(user.password, BCrypt.genSaltSync(10));
+        }
+    }
+});
+Users.hasMany(Projects);
+module.exports = Users;

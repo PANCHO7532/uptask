@@ -5,10 +5,25 @@ html(lang="en")
     body.login
         .contenedor-formulario
             h1 Create your account on UpTask
+            if locals.messages
+                .alertas
+                    each category in Object.keys(locals.messages)
+                        each err in messages[category]
+                            .alerta(class=`${category}`)
+                                if err.indexOf("users_email_unique") != -1
+                                    p= "Email already registered!"
+                                else
+                                    p= err
+            //if error
+            //    each err in error
+            //        if err.validatorKey == "not_unique"
+            //            p.error.alerta= "Email already registered!"
+            //        else
+            //            p.error.alerta= err.message
             form#formulario.caja.caja-login(method="POST" action="/createAccount")
                 .campo
                     label(for="email") E-mail:
-                    input(type="email" name="email" placeholder="Email")
+                    input(type="text" name="email" placeholder="Email" value= emailValue)
                 .campo
                     label(for="passwd") Password:
                     input(type="password" name="passwd" placeholder="Password")

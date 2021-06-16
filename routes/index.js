@@ -23,5 +23,6 @@ module.exports = function() {
     router.delete("/tasks/:id", taskController.deleteTask);
     //create new account
     router.get("/createAccount", userController.formCreateAccount);
+    router.post("/createAccount", userController.createAccountPOST);
     return router;
 }
