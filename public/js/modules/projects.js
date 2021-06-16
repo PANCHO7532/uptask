@@ -33,7 +33,7 @@ try {
                     }, 2500);
                 }).catch((reject) => {
                     Swal.fire({
-                        type: "error",
+                        icon: "error",
                         title: "Something went wrong",
                         text: "The project couldn't be deleted."
                     });

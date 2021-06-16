@@ -16,5 +16,9 @@ module.exports = function() {
     router.delete("/projects/:url", controllers.deleteProject);
     //add task?
     router.post("/projects/:url", taskController.addTask);
+    //update task
+    router.patch("/tasks/:id", taskController.changeTaskStatus);
+    //delete task
+    router.delete("/tasks/:id", taskController.deleteTask);
     return router;
 }

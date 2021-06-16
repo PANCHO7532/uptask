@@ -1,2 +1,3 @@
 //this is app.js :v
-import tasks from "./modules/projects"
+import projects from "./modules/projects"
+import tasks from "./modules/tasks"
