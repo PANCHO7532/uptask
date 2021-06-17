@@ -9,3 +9,4 @@ test.js
 
 # new
 config/db.retail.js
+variables.env

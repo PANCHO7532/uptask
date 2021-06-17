@@ -8,6 +8,10 @@ const expressValidator = require("express-validator");
 const passport = require("./config/passport");
 const routes = require("./routes");
 const helpers = require("./helpers");
+//import variables
+require("dotenv").config({
+    path: "variables.env"
+});
 const app = express();
 
 //set static stuff
@@ -56,4 +60,9 @@ app.use((req, res, next) => {
 
 //home route
 app.use("/",  routes());
-app.listen(3000);
+//app.listen(3000);
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000;
+app.listen(port, host, () => {
+    console.log("[INFO] Server started");
+})
