@@ -5,17 +5,17 @@ html(lang="en")
     body.login
         .contenedor-formulario
             h1 Login to your account on UpTask
-            if error
-                p.alerta.error= error
-            //if locals.messages
-            //    .alertas
-            //        each category in Object.keys(locals.messages)
-            //            each err in messages[category]
-            //                .alerta(class=`${category}`)
-            //                    if err.indexOf("users_email_unique") != -1
-            //                        p= "Email already registered!"
-            //                    else
-            //                        p= err
+            //if error
+            //    p.alerta.error= error
+            if locals.messages
+                .alertas
+                    each category in Object.keys(locals.messages)
+                        each err in messages[category]
+                            .alerta(class=`${category}`)
+                                if err.indexOf("users_email_unique") != -1
+                                    p= "Email already registered!"
+                                else
+                                    p= err
 
             //if error
             //    each err in error
