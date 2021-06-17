@@ -30,5 +30,10 @@ module.exports = function() {
     router.post("/login", authController.authenticateUser);
     //logout
     router.get("/logout", authController.closeSession);
+    //password reset
+    router.get("/forgotPassword", userController.formReset);
+    router.get("/forgotPassword/:token", authController.checkResetPassword);
+    router.post("/resetPassAction", authController.sendToken);
+    router.post("/forgotPassword/:token", authController.updateResetPassword);
     return router;
 }

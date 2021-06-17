@@ -45,3 +45,8 @@ exports.createAccountPOST = async(req, res, next) => {
         return next();
     })*/
 }
+exports.formReset = (req, res) => {
+    res.render("resetPass", {
+        title: "Reset Password"
+    })
+}
