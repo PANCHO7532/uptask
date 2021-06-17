@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const BCrypt = require("bcrypt");
 const Users = require("../models/Users");
 const Sequelize = require("sequelize");
+const sendMailXD = require("../handlers/email");
 const Op = Sequelize.Op;
 //backtick: `
 exports.authenticateUser = passport.authenticate("local", {
@@ -50,7 +51,16 @@ exports.sendToken = async(req, res) => {
     await user.save();
     //generate url
     const resetUrl = `http://${req.headers.host}/forgotPassword/${user.token}`;
-    console.log(resetUrl);
+    //console.log(resetUrl);
+    //send token idk
+    await sendMailXD.send({
+        user,
+        subject: "Password Reset",
+        resetUrl,
+        file: "resetPassEmail"
+    });
+    req.flash("correcto", "Email sent!");
+    res.redirect("/login");
 }
 exports.checkResetPassword = async(req, res) => {
     //check if token is valid and show the prompt for let the user change the password

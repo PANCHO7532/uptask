@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style
+            include ./email.css
+    body 
+        h2 Reset Password
+        p="Hello, seems like you requested to reset your password, click on the following link for reset it."
+        p="This link is temporary, if you don't use it in the following 5 hours, it will expire automatically."
+        a(href=`${resetUrl}`) Reset your password
+        p=`If you can't access this link, visit: ${resetUrl} for reset your password`
+        p="If you didn't requested this email, you can ignore it safely."
