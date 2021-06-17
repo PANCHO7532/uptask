@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+    head
+        include partials/header
+    body.login
+        .contenedor-formulario
+            h1 Login to your account on UpTask
+            if error
+                p.alerta.error= error
+            //if locals.messages
+            //    .alertas
+            //        each category in Object.keys(locals.messages)
+            //            each err in messages[category]
+            //                .alerta(class=`${category}`)
+            //                    if err.indexOf("users_email_unique") != -1
+            //                        p= "Email already registered!"
+            //                    else
+            //                        p= err
+
+            //if error
+            //    each err in error
+            //        if err.validatorKey == "not_unique"
+            //            p.error.alerta= "Email already registered!"
+            //        else
+            //            p.error.alerta= err.message
+            form#formulario.caja.caja-login(method="POST" action="/login")
+                .campo
+                    label(for="email") E-mail:
+                    input(type="text" name="email" placeholder="Email" value= emailValue)
+                .campo
+                    label(for="passwd") Password:
+                    input(type="password" name="passwd" placeholder="Password")
+                .campo
+                    input.boton(type="submit" value="Login")
+                .campo
+                    a(href="/createAccount") No account? Create one here for free!
+                

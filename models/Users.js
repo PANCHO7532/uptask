@@ -40,5 +40,13 @@ const Users = db.define("users", {
         }
     }
 });
+//custom methods
+Users.prototype.verifyPassword = (password, crypted) => {
+    //console.log("password point");
+    //console.log(password);
+    //console.log("password crypted");
+    //console.log(crypted);
+    return BCrypt.compareSync(password, crypted);
+}
 Users.hasMany(Projects);
 module.exports = Users;

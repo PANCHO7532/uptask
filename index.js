@@ -5,6 +5,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
+const passport = require("./config/passport");
 const routes = require("./routes");
 const helpers = require("./helpers");
 const app = express();
@@ -41,6 +42,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //vardump xd
 app.use((req, res, next) => {

@@ -6,6 +6,15 @@ exports.formCreateAccount = (req, res, next) => {
         title: "Create Account on UpTask"
     });
 }
+exports.formLoginAccount = (req, res, next) => {
+    //let the fun begin
+    //res.send("1");
+    const {error} = res.locals.messages;
+    res.render("login", {
+        title: "Login into UpTask",
+        error
+    });
+}
 exports.createAccountPOST = async(req, res, next) => {
     //read data
     // console.log(req.body);
@@ -16,6 +25,7 @@ exports.createAccountPOST = async(req, res, next) => {
             email: email,
             password: passwd
         });
+        res.redirect("/login");
     } catch(error) {
         //console.log("error object for user controller: ");
         //console.log(error);

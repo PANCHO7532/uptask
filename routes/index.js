@@ -5,6 +5,7 @@ const { body } = require("express-validator/check");
 const controllers = require("../controllers/projectController");
 const taskController = require("../controllers/taskController");
 const userController = require("../controllers/userController");
+const authController = require("../controllers/authController");
 module.exports = function() {
     router.get("/", controllers.r1);
     router.get("/newProject", controllers.newProject);
@@ -24,5 +25,8 @@ module.exports = function() {
     //create new account
     router.get("/createAccount", userController.formCreateAccount);
     router.post("/createAccount", userController.createAccountPOST);
+    //login
+    router.get("/login", userController.formLoginAccount);
+    router.post("/login", authController.authenticateUser);
     return router;
 }
