@@ -53,8 +53,11 @@ app.use(passport.session());
 
 //vardump xd
 app.use((req, res, next) => {
+    //console.log(req.user);
     res.locals.vardump = helpers.vardump;
     res.locals.messages = req.flash();
+    res.locals.user = {...req.user} || null;
+    //console.log(res.locals.user);
     next();
 });
 

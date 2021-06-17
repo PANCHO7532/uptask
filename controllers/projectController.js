@@ -2,14 +2,24 @@ const Projects = require("../models/Projects");
 const Tasks = require("../models/Tasks");
 //const projects = require("../models/Projects"); //remind me to check if this is useful
 exports.r1 = async (req, res) => {
-    const projects = await Projects.findAll()
+    const userId = res.locals.user.id;
+    const projects = await Projects.findAll({
+        where: {
+            userId
+        }
+    });
     res.render("index", {
         title: "Index",
         projects
     });
 };
 exports.newProject = async (req, res) => {
-    const projects = await Projects.findAll()
+    const userId = res.locals.user.id;
+    const projects = await Projects.findAll({
+        where: {
+            userId
+        }
+    });
     res.render("newProject", {
         title: "New Project",
         projects
@@ -32,15 +42,22 @@ exports.newProjectPOST = async(req, res) => {
     } else {
         //para database
         //const url = require("slug")(name).toLowerCase();
-        const project = await Projects.create({ name });
+        const userId = res.locals.user.id;
+        const project = await Projects.create({ name, userId });
         res.redirect("/");
     }
 }
 exports.projectByURL = async(req, res, next) => {
-    const projects = await Projects.findAll();
+    const userId = res.locals.user.id;
+    const projects = await Projects.findAll({
+        where: {
+            userId
+        }
+    });
     const project = await Projects.findOne({
         where: {
-            url: req.params.url
+            url: req.params.url,
+            userId
         }
     });
     /*
@@ -67,10 +84,16 @@ exports.projectByURL = async(req, res, next) => {
     })
 }
 exports.editForm = async(req, res) => {
-    const projectsPromise = Projects.findAll();
+    const userId = res.locals.user.id;
+    const projectsPromise = Projects.findAll({
+        where: {
+            userId
+        }
+    });
     const projectPromise = Projects.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            userId
         }
     });
     const [projects, project] = await Promise.all([projectsPromise, projectPromise]);
