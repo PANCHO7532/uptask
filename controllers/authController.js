@@ -12,3 +12,9 @@ exports.authenticatedUser = (req, res, next) => {
     }
     return res.redirect("/login");
 }
+//close session
+exports.closeSession = (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/login");
+    });
+}

@@ -28,5 +28,7 @@ module.exports = function() {
     //login
     router.get("/login", userController.formLoginAccount);
     router.post("/login", authController.authenticateUser);
+    //logout
+    router.get("/logout", authController.closeSession);
     return router;
 }
