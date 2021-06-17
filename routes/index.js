@@ -7,21 +7,21 @@ const taskController = require("../controllers/taskController");
 const userController = require("../controllers/userController");
 const authController = require("../controllers/authController");
 module.exports = function() {
-    router.get("/", controllers.r1);
-    router.get("/newProject", controllers.newProject);
-    router.post("/newProject", body("name").not().isEmpty().trim().escape(), controllers.newProjectPOST);
-    router.get("/projects/:url", controllers.projectByURL);
+    router.get("/", authController.authenticatedUser, controllers.r1);
+    router.get("/newProject", authController.authenticatedUser, controllers.newProject);
+    router.post("/newProject", authController.authenticatedUser, body("name").not().isEmpty().trim().escape(), controllers.newProjectPOST);
+    router.get("/projects/:url", authController.authenticatedUser, controllers.projectByURL);
     //update project
-    router.get("/project/edit/:id", controllers.editForm);
-    router.post("/newProject/:id", body("name").not().isEmpty().trim().escape(), controllers.updateProjectPOST);
+    router.get("/project/edit/:id", authController.authenticatedUser, controllers.editForm);
+    router.post("/newProject/:id", authController.authenticatedUser, body("name").not().isEmpty().trim().escape(), controllers.updateProjectPOST);
     //delete project
-    router.delete("/projects/:url", controllers.deleteProject);
+    router.delete("/projects/:url", authController.authenticatedUser, controllers.deleteProject);
     //add task?
-    router.post("/projects/:url", taskController.addTask);
+    router.post("/projects/:url", authController.authenticatedUser, taskController.addTask);
     //update task
-    router.patch("/tasks/:id", taskController.changeTaskStatus);
+    router.patch("/tasks/:id", authController.authenticatedUser, taskController.changeTaskStatus);
     //delete task
-    router.delete("/tasks/:id", taskController.deleteTask);
+    router.delete("/tasks/:id", authController.authenticatedUser, taskController.deleteTask);
     //create new account
     router.get("/createAccount", userController.formCreateAccount);
     router.post("/createAccount", userController.createAccountPOST);
