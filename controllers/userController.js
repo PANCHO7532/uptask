@@ -82,6 +82,7 @@ exports.activateAccount = async(req, res, next) => {
         res.redirect("/login");
     }
     user.active = 1;
+    user.token = null;
     await user.save();
     req.flash("correcto", "Account activated!");
     res.redirect("/login");
