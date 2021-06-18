@@ -66,7 +66,8 @@ exports.checkResetPassword = async(req, res) => {
     //check if token is valid and show the prompt for let the user change the password
     const user = await Users.findOne({
         where: {
-            token: req.params.token
+            token: req.params.token,
+            active: 1
         }
     });
     if(!user) {

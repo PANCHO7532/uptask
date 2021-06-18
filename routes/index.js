@@ -25,6 +25,7 @@ module.exports = function() {
     //create new account
     router.get("/createAccount", userController.formCreateAccount);
     router.post("/createAccount", userController.createAccountPOST);
+    router.get("/activate:token", userController.activateAccount);
     //login
     router.get("/login", userController.formLoginAccount);
     router.post("/login", authController.authenticateUser);

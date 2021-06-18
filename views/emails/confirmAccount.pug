@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style
+            include ./email.css
+    body 
+        h2 Confirm your Account on UpTask
+        p="Thanks for registering an account on UpTask!"
+        p="Click on the following button/link for activate your account"
+        a(href=`${activationUrl}`) Activate Account
+        p=`If you can't access this link, visit: ${activationUrl} for activate your account`
+        p="If you didn't requested this email, you can ignore it safely."
