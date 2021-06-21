@@ -11,7 +11,11 @@ let transport = nodemailer.createTransport({
     auth: {
         user: emailConfig.user,
         pass: emailConfig.pass
-    }
+    },
+    tls: {
+        rejectUnauthorized: false
+    },
+    debug: true,
 });
 const generateHTML = (file, opts) => {
     const html = pug.renderFile(__dirname + "/../views/emails/" + file + ".pug", opts);
@@ -21,7 +25,7 @@ exports.send = async(opt) => {
     const htmlContent = generateHTML(opt.file, opt)
     const textContent = htmlToText.fromString(htmlContent);
     let mailOpts = {
-        from: "UpTask <uptask@p7com.net>",
+        from: "UpTask <pancho7532@zohomail.com>",
         to: opt.user.email,
         subject: opt.subject,
         text: textContent,

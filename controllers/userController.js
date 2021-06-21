@@ -48,7 +48,6 @@ exports.createAccountPOST = async(req, res, next) => {
         res.redirect("/login");
     } catch(error) {
         //console.log("error object for user controller: ");
-        //console.log(error);
         req.flash("error", error.errors.map(error => error.message));
         res.render("createAccount",{
             messages: req.flash(),
