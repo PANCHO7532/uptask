@@ -25,7 +25,7 @@ exports.send = async(opt) => {
     const htmlContent = generateHTML(opt.file, opt)
     const textContent = htmlToText.fromString(htmlContent);
     let mailOpts = {
-        from: "UpTask <pancho7532@zohomail.com>",
+        from: "UpTask <" + emailConfig.mailAddr + ">",
         to: opt.user.email,
         subject: opt.subject,
         text: textContent,
